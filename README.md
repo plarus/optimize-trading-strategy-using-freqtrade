@@ -8,14 +8,14 @@ The DevBootstrap YouTube screencast supporting this repo is [here](https://youtu
 
 First, I recommend to alias `docker-compose` to `dc` and `docker-compose run --rm "$@"` to `dcr` to save of typing.
 
-Put this in your `~/.bash_profile` file so that its always aliased like this!
+Put this in your `~/.bashrc` file so that its always aliased like this!
 
 ```
-alias dc=docker-compose
-dcr() { docker-compose run --rm "$@"; }
+alias dc='sudo docker-compose'
+alias dcr='sudo docker-compose run --rm "$@"'
 ```
 
-Now run `source ~/.bash_profile`.
+Now run `source ~/.bashrc`.
 
 ## Installing Freqtrade
 
