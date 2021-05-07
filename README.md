@@ -137,10 +137,10 @@ Plot the results to see how the bot entered and exited trades over time. Remembe
 Note that the `plot_config` that is contained in the strategy will be applied to the chart.
 
 ```
-dcfreqtrade plot-dataframe --strategy BBRSINaiveStrategy -p ALGO/USDT -i 15m
+dcfreqtrade plot-dataframe --strategy BBRSINaiveStrategy -p ETH/BTC -i 15m
 ```
 
-Once the plot is ready you will see the message `Stored plot as /freqtrade/user_data/plot/freqtrade-plot-ALGO_USDT-15m.html` which you can open in a browser window.
+Once the plot is ready you will see the message `Stored plot as /freqtrade/user_data/plot/freqtrade-plot-ETH_BTC-15m.html` which you can open in a browser window.
 
 ## Optimize
 
@@ -174,10 +174,10 @@ Before you run the Dry Run, don't forget to check your local config.json file is
 
 ```
 "max_open_trades": 10,
-"stake_currency": "USDT",
+"stake_currency": "BTC",
 "stake_amount" : "unlimited",
 "tradable_balance_ratio": 0.99,
-"fiat_display_currency": "USD",
+"fiat_display_currency": "EUR",
 "timeframe": "15min",
 "dry_run": true,
 "dry_run_wallet": 1000,
