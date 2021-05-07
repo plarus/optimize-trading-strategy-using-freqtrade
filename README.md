@@ -87,27 +87,27 @@ dc logs -f
 
 ## Setup a pairs file
 
-We will use Binance so we create a data directory for binance and copy our `pairs.json` file into that directory:
+We will use Kraken so we create a data directory for kraken and copy our `pairs.json` file into that directory:
 
 ```
-mkdir -p user_data/data/binance
-cp pairs.json user_data/data/binance/.
+mkdir -p user_data/data/kraken
+cp pairs.json user_data/data/kraken/.
 ```
 
-Now put whatever pairs you are interested to download into the `pairs.json` file. Take a look at the [pairs.json](ft_userdata/user_data/data/binance/pairs.json) file included in this repo.
+Now put whatever pairs you are interested to download into the `pairs.json` file. Take a look at the [pairs.json](ft_userdata/user_data/data/kraken/pairs.json) file included in this repo.
 
 ## Download Data
 
 Now that we have our pairs file in place, lets download the OHLCV data for backtesting our strategy.
 
 ```
-dcfreqtrade download-data --exchange binance -t 15m
+dcfreqtrade download-data --exchange kraken -t 15m
 ```
 
 List the available data using the `list-data` sub-command:
 
 ```
-dcfreqtrade list-data --exchange binance
+dcfreqtrade list-data --exchange kraken
 ```
 
 Manually inspect the json files to examine the data is as expected (i.e. that it contains the expected `OHLCV` data requested).
@@ -117,7 +117,7 @@ Manually inspect the json files to examine the data is as expected (i.e. that it
 Note to list the available data you need to pass the `--data-format-ohlcv jsongz` flag as below:
 
 ```
-dcfreqtrade list-data --exchange binance
+dcfreqtrade list-data --exchange kraken
 ```
 
 ## Backtest
@@ -125,7 +125,7 @@ dcfreqtrade list-data --exchange binance
 Now we have the data for 1h and 4h OHLCV data for our pairs lets Backtest this strategy:
 
 ```
-dcfreqtrade backtesting --datadir user_data/data/binance --export trades  --stake-amount 100 -s BBRSINaiveStrategy -i 15m
+dcfreqtrade backtesting --datadir user_data/data/kraken --export trades  --stake-amount 100 -s BBRSINaiveStrategy -i 15m
 ```
 
 For details on interpreting the result, refer to ['Understading the backtesting result'](https://www.freqtrade.io/en/stable/backtesting/#understand-the-backtesting-result)
@@ -165,7 +165,7 @@ Apply the suggested optimized results from the Hyperopt to the strategy. Either 
 Now we have updated our strategy based on the result from the hyperopt lets run a backtest again:
 
 ```
-dcfreqtrade backtesting --datadir user_data/data/binance --export trades --stake-amount 100 -s BBRSIOptimizedStrategy -i 15m
+dcfreqtrade backtesting --datadir user_data/data/kraken --export trades --stake-amount 100 -s BBRSIOptimizedStrategy -i 15m
 ```
 
 ## Sandbox / Dry Run
