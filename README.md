@@ -6,13 +6,13 @@ The DevBootstrap YouTube screencast supporting this repo is [here](https://youtu
 
 ## Alias Docker-Compose Command
 
-First, I recommend to alias `docker-compose` to `dc` and `docker-compose run --rm "$@"` to `dcr` to save of typing.
+First, I recommend to alias `docker-compose` to `dc` and `docker-compose run --rm freqtrade "$@"` to `dcfreqtrade` to save of typing.
 
 Put this in your `~/.bashrc` file so that its always aliased like this!
 
 ```
 alias dc='sudo docker-compose'
-alias dcr='sudo docker-compose run --rm "$@"'
+alias dcr='sudo docker-compose run --rm freqtrade "$@"'
 ```
 
 Now run `source ~/.bashrc`.
@@ -33,13 +33,13 @@ curl https://raw.githubusercontent.com/freqtrade/freqtrade/stable/docker-compose
 dc pull
 
 # Create user directory structure
-dcr freqtrade create-userdir --userdir user_data
+dcfreqtrade create-userdir --userdir user_data
 
 # Create configuration - Requires answering interactive questions
-dcr freqtrade new-config --config user_data/config.json
+dcfreqtrade new-config --config user_data/config.json
 ```
 
-**NOTE**: Any freqtrade commands are available by running `dcr freqtrade <command> <optional arguments>`. So the only difference to run the command via `docker-compose` is to prefix the command with our new alias `dcr` (which runs `docker-compose run --rm "$@"` ... see above for details.)
+**NOTE**: Any freqtrade commands are available by running `dcfreqtrade <command> <optional arguments>`. So the only difference to run the command via `docker-compose` is to prefix the command with our new alias `dcr` (which runs `docker-compose run --rm "$@"` ... see above for details.)
 
 ## Config Bot
 
@@ -101,13 +101,13 @@ Now put whatever pairs you are interested to download into the `pairs.json` file
 Now that we have our pairs file in place, lets download the OHLCV data for backtesting our strategy.
 
 ```
-dcr freqtrade download-data --exchange binance -t 15m
+dcfreqtrade download-data --exchange binance -t 15m
 ```
 
 List the available data using the `list-data` sub-command:
 
 ```
-dcr freqtrade list-data --exchange binance
+dcfreqtrade list-data --exchange binance
 ```
 
 Manually inspect the json files to examine the data is as expected (i.e. that it contains the expected `OHLCV` data requested).
@@ -117,7 +117,7 @@ Manually inspect the json files to examine the data is as expected (i.e. that it
 Note to list the available data you need to pass the `--data-format-ohlcv jsongz` flag as below:
 
 ```
-dcr freqtrade list-data --exchange binance
+dcfreqtrade list-data --exchange binance
 ```
 
 ## Backtest
@@ -125,7 +125,7 @@ dcr freqtrade list-data --exchange binance
 Now we have the data for 1h and 4h OHLCV data for our pairs lets Backtest this strategy:
 
 ```
-dcr freqtrade backtesting --datadir user_data/data/binance --export trades  --stake-amount 100 -s BBRSINaiveStrategy -i 15m
+dcfreqtrade backtesting --datadir user_data/data/binance --export trades  --stake-amount 100 -s BBRSINaiveStrategy -i 15m
 ```
 
 For details on interpreting the result, refer to ['Understading the backtesting result'](https://www.freqtrade.io/en/stable/backtesting/#understand-the-backtesting-result)
@@ -137,7 +137,7 @@ Plot the results to see how the bot entered and exited trades over time. Remembe
 Note that the `plot_config` that is contained in the strategy will be applied to the chart.
 
 ```
-dcr freqtrade plot-dataframe --strategy BBRSINaiveStrategy -p ALGO/USDT -i 15m
+dcfreqtrade plot-dataframe --strategy BBRSINaiveStrategy -p ALGO/USDT -i 15m
 ```
 
 Once the plot is ready you will see the message `Stored plot as /freqtrade/user_data/plot/freqtrade-plot-ALGO_USDT-15m.html` which you can open in a browser window.
@@ -147,13 +147,13 @@ Once the plot is ready you will see the message `Stored plot as /freqtrade/user_
 To optimize the strategy we will use the Hyperopt module of freqtrade. First up we need to create a new hyperopt file from a template:
 
 ```
-dcr freqtrade new-hyperopt --hyperopt BBRSIHyperopt
+dcfreqtrade new-hyperopt --hyperopt BBRSIHyperopt
 ```
 
 Now add desired definitions for buy/sell guards and triggers to the Hyperopt file. Then run the optimization like so (NOTE: set the time interval and the number of epochs to test using the `-i` and `-e` flags:
 
 ```
-dcr freqtrade hyperopt --hyperopt BBRSIHyperopt --hyperopt-loss SharpeHyperOptLoss --strategy BBRSINaiveStrategy -i 15m
+dcfreqtrade hyperopt --hyperopt BBRSIHyperopt --hyperopt-loss SharpeHyperOptLoss --strategy BBRSINaiveStrategy -i 15m
 ```
 
 ## Update Strategy
@@ -165,7 +165,7 @@ Apply the suggested optimized results from the Hyperopt to the strategy. Either 
 Now we have updated our strategy based on the result from the hyperopt lets run a backtest again:
 
 ```
-dcr freqtrade backtesting --datadir user_data/data/binance --export trades --stake-amount 100 -s BBRSIOptimizedStrategy -i 15m
+dcfreqtrade backtesting --datadir user_data/data/binance --export trades --stake-amount 100 -s BBRSIOptimizedStrategy -i 15m
 ```
 
 ## Sandbox / Dry Run
