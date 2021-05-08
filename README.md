@@ -52,7 +52,7 @@ The params that we will set to note are (from `config.json`). This allows all th
 "tradable_balance_ratio": 0.99,
 ```
 
-The above are used for Dry Runs and is the ['Dynamic Stake Amount'](https://www.freqtrade.io/en/stable/configuration/#dynamic-stake-amount). For live trading you might want to change this. For example, only allow bot to trade 20% of excahnge account funds and cancel open orders on exit (if market goes crazy!)
+The above are used for Dry Runs and is the ['Dynamic Stake Amount'](https://www.freqtrade.io/en/stable/configuration/#dynamic-stake-amount). For live trading you might want to change this. For example, only allow bot to trade 20% of exchange account funds and cancel open orders on exit (if market goes crazy!)
 
 ```
 "tradable_balance_ratio": 0.2,
