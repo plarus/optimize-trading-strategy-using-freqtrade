@@ -52,6 +52,8 @@ The params that we will set to note are (from `config.json`). This allows all th
 "tradable_balance_ratio": 0.99,
 ```
 
+**NOTE**: Quote around the `unlimited` keyword need to be added manually in the json file.
+
 The above are used for Dry Runs and is the ['Dynamic Stake Amount'](https://www.freqtrade.io/en/stable/configuration/#dynamic-stake-amount). For live trading you might want to change this. For example, only allow bot to trade 20% of exchange account funds and cancel open orders on exit (if market goes crazy!)
 
 ```
@@ -95,6 +97,9 @@ cp pairs.json user_data/data/binance/.
 ```
 
 Now put whatever pairs you are interested to download into the `pairs.json` file. Take a look at the [pairs.json](ft_userdata/user_data/data/binance/pairs.json) file included in this repo.
+
+
+**NOTE**: "pair_whitelist" of config.json file look like to be directly used for this
 
 ## Download Data
 
@@ -150,11 +155,15 @@ To optimize the strategy we will use the Hyperopt module of freqtrade. First up 
 dcfreqtrade new-hyperopt --hyperopt BBRSIHyperopt
 ```
 
-Now add desired definitions for buy/sell guards and triggers to the Hyperopt file. Then run the optimization like so (NOTE: set the time interval and the number of epochs to test using the `-i` and `-e` flags:
+Now add desired definitions for buy/sell guards and triggers to the Hyperopt file. Then run the optimization like so:
 
 ```
 dcfreqtrade hyperopt --hyperopt BBRSIHyperopt --hyperopt-loss SharpeHyperOptLoss --strategy BBRSINaiveStrategy -i 15m
 ```
+
+**NOTE1**: set the time interval and the number of epochs to test using the `-i` and `-e` flags
+
+**NOTE2**: hyperopt do not work if "stake_amount" is not set to "unlimited" in your config.json file
 
 ## Update Strategy
 
@@ -195,7 +204,7 @@ For use with docker you will need to enable the api server in the Freqtrade conf
   "listen_ip_address": "0.0.0.0",
   "username": "Freqtrader",
   "password": "secretpass!",
-P
+}
 ...
 ```
 
