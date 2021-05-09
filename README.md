@@ -117,14 +117,6 @@ dcfreqtrade list-data --exchange binance
 
 Manually inspect the json files to examine the data is as expected (i.e. that it contains the expected `OHLCV` data requested).
 
-## List the available data for backtesting
-
-Note to list the available data you need to pass the `--data-format-ohlcv jsongz` flag as below:
-
-```
-dcfreqtrade list-data --exchange binance
-```
-
 ## Backtest
 
 Now we have the data for 1h and 4h OHLCV data for our pairs lets Backtest this strategy:
