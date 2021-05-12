@@ -12,7 +12,7 @@ Put this in your `~/.bashrc` file so that its always aliased like this!
 
 ```
 alias dc='sudo docker-compose'
-alias dcr='sudo docker-compose run --rm freqtrade "$@"'
+alias dcfreqtrade='sudo docker-compose run --rm freqtrade "$@"'
 ```
 
 Now run `source ~/.bashrc`.
