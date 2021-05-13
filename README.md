@@ -157,9 +157,16 @@ dcfreqtrade hyperopt --hyperopt BBRSIHyperopt --hyperopt-loss SharpeHyperOptLoss
 
 **NOTE2**: hyperopt do not work if "stake_amount" is not set to "unlimited" in your config.json file
 
-## Update Strategy
+It is no longer needed to write a separate hyperopt class. This can be directly included in the strategy class.
+```
+dcfreqtrade hyperopt --hyperopt-loss SharpeHyperOptLoss --strategy BBRSINaiveStrategyWithHyperoptCode -i 15m
+```
 
-Apply the suggested optimized results from the Hyperopt to the strategy. Either replace the current strategy or create a new 'optimized' strategy.
+In order to get the result for a specific epoch the hyperopt-show command can be used:
+
+```
+dcfreqtrade hyperopt-show -n 7 --print-json
+```
 
 ## Backtest
 
