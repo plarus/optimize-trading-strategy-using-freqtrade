@@ -67,7 +67,7 @@ def main(argv):
 
         for csv_file in os.listdir(args.input_path):
             # Convert only files with the expected name
-            if re.findall('.*' + args.fiat + '_[0-9]*.csv', csv_file):
+            if re.findall('.*' + args.fiat + '_[0-9]*\.csv', csv_file):
                 json_file_path = convert_name(csv_file, args.fiat, output_dir)
                 convert_file(os.path.join(args.input_path, csv_file), json_file_path)
     else:
