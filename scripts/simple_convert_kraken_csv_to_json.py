@@ -83,5 +83,5 @@ def main(argv):
         convert_file(args.input_path, json_file_path)
 
 if __name__ == "__main__":
-   main(sys.argv[1:])
+    main(sys.argv[1:])
 
